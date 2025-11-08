@@ -10,7 +10,11 @@ import SwiftUI
 struct FilmListView: View {
     
 @State private var filmsViewModal = FilmsViewModel()
-    
+    let columns:[GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+
+    ]
     var body: some View {
     
         NavigationStack{
@@ -29,10 +33,14 @@ struct FilmListView: View {
                     
                 }
             case .loaded(let films):
-                
-                List(films) { film in
+                NavigationStack{
+                    LazyVGrid(columns: columns) { ForEach(films) { film in
+                        VStack( )
+                        {  Text(film.producer).multilineTextAlignment(.center)
+                        }.padding()
+                    }
+                    }
                     
-                    Text(film.title)
                     
                 }
             case .error(let error):

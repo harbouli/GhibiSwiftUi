@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol GhibliService {
-    func fetchFilms(completion: @escaping (Result<[Film], Error>) -> ())
+    func fetchFilms() async throws -> [Film]
 }
